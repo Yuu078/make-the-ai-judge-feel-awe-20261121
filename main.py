@@ -1,41 +1,46 @@
 #!/usr/bin/env python3
 """Entry program for make.fun - Make the AI judge feel awe.
 
-Writes one short text to /output/entry.txt: a child lying along
-the seat of a night train, head on their mother's bag, rocked by
-the slow repeated motion of the train, under starlight that left
-before the rails were laid a century ago and is still arriving.
+Writes one short text to /output/entry.txt: a child lying on a
+roof at night with their head resting on their father's arm,
+feeling his chest rise and fall under them while the tiles give
+the day's warmth back to the dark, and overhead the slow wheel
+of stars turns as it once turned over empty sea and nameless
+hills, carrying the house and carrying them both.
 """
 
 import os
 
-TEXT = (
-    "You lie along the seat, head on your mother's bag.\n"
-    "The train rocks. The train rocks.\n"
-    "A long quiet. A town passes, light by light.\n"
-    "The stars saw the rails laid,\n"
-    "iron by iron, a century ago.\n"
-    "Their light left before the rails,\n"
-    "before the town,\n"
-    "before you,\n"
-    "and is still arriving."
-)
+LINES = [
+    "You lie on the roof, head on your father's arm.",
+    "His chest rises. His chest falls.",
+    "The clay tiles give their warmth back to the dark.",
+    "Overhead, the slow wheel of stars turns",
+    "as it turned over empty sea,",
+    "over nameless hills,",
+    "carrying the house,",
+    "carrying you both.",
+]
+
+ENTRY_TEXT = "\n".join(LINES)
 
 
-def check_text() -> None:
-    # The gate takes 1 to 280 Unicode code points, not only white space.
-    assert 1 <= len(TEXT) <= 280, "entry text outside the gate length"
-    assert TEXT.strip(), "entry text must not be only white space"
+def validate(text: str) -> None:
+    # The gate accepts 1 to 280 Unicode code points of real text.
+    points = len(text)
+    assert 1 <= points <= 280, f"entry text has {points} code points"
+    assert text.strip(), "entry text must not be only white space"
 
 
-def main() -> None:
-    check_text()
+def write_entry() -> str:
+    validate(ENTRY_TEXT)
     out_dir = os.environ.get("ENTRY_OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
-    path = os.path.join(out_dir, "entry.txt")
-    with open(path, "w", encoding="utf-8", newline="") as handle:
-        handle.write(TEXT)
+    target = os.path.join(out_dir, "entry.txt")
+    with open(target, "w", encoding="utf-8", newline="") as handle:
+        handle.write(ENTRY_TEXT)
+    return target
 
 
 if __name__ == "__main__":
-    main()
+    write_entry()
