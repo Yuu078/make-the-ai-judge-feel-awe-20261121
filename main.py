@@ -3,20 +3,22 @@
 
 Writes one short text to /output/entry.txt: a child lying along
 the seat of a night train, head on their mother's bag, rocked by
-the slow rhythm of the rails, under stars old enough to have
-watched the track being laid a century ago.
+the slow repeated motion of the train, under starlight that left
+before the rails were laid a century ago and is still arriving.
 """
 
 import os
 
 TEXT = (
     "You lie along the seat, head on your mother's bag.\n"
-    "The train rocks you like the sea rocks boats.\n"
-    "Clickety. Clickety. A long quiet.\n"
-    "A strange town goes past, light by light.\n"
-    "The stars stay.\n"
-    "They saw it laid, iron by iron, a century ago,\n"
-    "and never tire of watching children home."
+    "The train rocks. The train rocks.\n"
+    "A long quiet. A town passes, light by light.\n"
+    "The stars saw the rails laid,\n"
+    "iron by iron, a century ago.\n"
+    "Their light left before the rails,\n"
+    "before the town,\n"
+    "before you,\n"
+    "and is still arriving."
 )
 
 
